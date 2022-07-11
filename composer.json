@@ -1,0 +1,25 @@
+{
+    "name": "issai/router",
+    "autoload": {
+        "files": [
+            "app/helpers.php",
+            "app/app.php"
+        ],
+        "psr-4": {
+            "App\\": "app",
+            "Issai\\Router\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Issifou Issa",
+            "email": "chrisissifou@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^5.4"
+    },
+    "require": {
+        "altorouter/altorouter": "^2.0"
+    }
+}
