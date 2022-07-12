@@ -98,10 +98,13 @@
 <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/articles">Articles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/post">Post</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/blog">Blog</a>

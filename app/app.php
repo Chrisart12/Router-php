@@ -25,5 +25,37 @@
         }
     }
 
+    if(!function_exists('view')) {
+	
+        function view($path)
+        {
+            // Permet de faire des remplacement du point par le slash
+            $path = str_replace('.', '/', $path);
+            return require dirname($_SERVER['DOCUMENT_ROOT']).'/resources/views/'.$path. '.php';
+        }
+    }
+
+    if(!function_exists('config')) {
+	
+        function config($file)
+        {
+            $file_expode = explode('.', $file);
+            
+            $array = require dirname($_SERVER['DOCUMENT_ROOT']).'/config/' . $file_expode[0] .'.php';
+
+            return $array[$file_expode[1]];
+        }
+    }
+
+    if(!function_exists('env')) {
+	
+        function env($variable)
+        {
+            return $_ENV[$variable];
+        }
+    }
+
+
+
 
 ?>
