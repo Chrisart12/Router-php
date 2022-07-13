@@ -6,7 +6,7 @@ require __DIR__. "./../vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-
+dd("eeeeee");
 // Permet d'afficher un joli debug
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
