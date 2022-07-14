@@ -27,8 +27,14 @@
 
     if(!function_exists('view')) {
 	
-        function view($path)
+        function view($path, $data = null)
         {
+            if ( $data) {
+                foreach ($data as $key => $value) {
+                    $$key = $value;
+                }
+            }
+            
             // Permet de faire des remplacement du point par le slash
             $path = str_replace('.', '/', $path);
             return require dirname($_SERVER['DOCUMENT_ROOT']).'/resources/views/'.$path. '.php';
@@ -54,6 +60,17 @@
             return $_ENV[$variable];
         }
     }
+
+    if(!function_exists('url')) {
+	
+        function url($path)
+        {
+            // Permet de faire des remplacement du point par le slash
+            $path = str_replace('.', '/', $path);
+            return header('Location: '.'http://localhost:8000/' . $path);
+        }
+    }
+
 
 
 

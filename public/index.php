@@ -6,7 +6,9 @@ require __DIR__. "./../vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-dd("eeeeee");
+
+
+// dd(config('app'));
 // Permet d'afficher un joli debug
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -36,13 +38,20 @@ $router->map('GET', '/articles', function() {
 }, 'articles');
 
 $router->map('GET', '/article/[i:id]', function($id) {
+
     require resource_path(). "views/blog/article.php";
     
 }, 'article');
 
 $router->map('GET', '/', 'App\Http\Controllers\HomeController#index', 'home');
 
-$router->map('GET', '/post', 'App\Http\Controllers\PostController#index', 'post');
+$router->map('GET', '/post', 'App\Http\Controllers\PostController#index', 'post.index');
+$router->map('GET', '/post/[i:id]', 'App\Http\Controllers\PostController#show', 'post.show');
+$router->map('GET', '/post/create', 'App\Http\Controllers\PostController#create', 'post.create');
+$router->map('POST', '/post/store', 'App\Http\Controllers\PostController#store', 'post.store');
+$router->map('GET', '/post/[i:id]/edit', 'App\Http\Controllers\PostController#edit', 'post.edit');
+$router->map('POST', '/post/[i:id]/update', 'App\Http\Controllers\PostController#update', 'post.update');
+$router->map('POST', '/post/[i:id]/destroy', 'App\Http\Controllers\PostController#destroy', 'post.destroy');
 
 
 // $router->map('GET', '/article/[*:slug]-[i:id]', function() {
@@ -55,7 +64,7 @@ list( $controller, $action ) = explode( '#', $match['target'] );
 
 if ( is_callable(array($controller, $action)) ) {
     $obj = new $controller();
-    call_user_func_array(array($obj,$action), array($match['params']));
+    call_user_func_array(array($obj,$action), $match['params']);
 } else if ($match['target']==''){
     echo 'Error: no route was matched'; 
     //possibly throw a 404 error
